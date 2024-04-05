@@ -125,9 +125,7 @@ public class NewEditController {
         if (source.isSelected()){
             hideRepeatedTaskModule(false);
         }
-        else if (!source.isSelected()){
-            hideRepeatedTaskModule(true);
-        }
+        hideRepeatedTaskModule(true);
     }
     private void hideRepeatedTaskModule(boolean toShow){
         datePickerEnd.setDisable(toShow);
