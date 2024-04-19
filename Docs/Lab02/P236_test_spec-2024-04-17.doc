@@ -12,7 +12,7 @@
 <p style="text-align: center;"><img alt="TestLink logo" title="configure using $tlCfg->document_generator->company_logo"  width= height= src="https://www.scs.ubbcluj.ro/testlink/gui/themes/default/images/tl-logo-transparent-25.png" /></p></div>
 <div class="doc_title"><p>Test Specification</p></div>
 <div class="doc_title" style="text-align:left;margin: auto;"><p>Test Project: Prj236<br/>Test Suite: Prj236 - scir3221_BBT</p></div>
-<div class="summary"><p id="printedby">Printed by TestLink on 04/04/2024</p></div>
+<div class="summary"><p id="printedby">Printed by TestLink on 17/04/2024</p></div>
 <div class="pagefooter" id="copyright">2012 &copy; TestLink Community</div>
 <h1 class="general" style="page-break-before: always">Table Of Contents</h1><div class="toc"><p style="padding-left: 20px;"><b><a href="#toc_1">1.scir3221_BBT</a></b></p>
 <p style="padding-left: 45px;"><a href="#toc_tc21375">P236-50: TC1_ECP_Valid</a></p><p style="padding-left: 45px;"><a href="#toc_tc21382">P236-51: TC2_ECP_Invalid</a></p><p style="padding-left: 45px;"><a href="#toc_tc21385">P236-52: TC3_BVA_Valid</a></p><p style="padding-left: 45px;"><a href="#toc_tc21387">P236-53: TC4_BVA_Invalid</a></p></div><h1 class="doclevel" >Scope</h1>
@@ -21,73 +21,65 @@
 <h1 class='doclevel'>1.Test Suite : scir3221_BBT</h1>
 <a name="toc_tc21375"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case P236-50: TC1_ECP_Valid&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
 <tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">zsir3255</td></tr>
-<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Creearea unui task cu parametri valizi</p>
-</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>Title: &quot;Meeting with Team&quot;<br />
-Start Date &amp; Time: 2024-04-05 09:00<br />
-End Date &amp; Time: 2024-04-05 11:00<br />
-Repetition Interval: 0 hours 30 minutes<br />
-Active: True</p>
-</td><td><p>Task created</p>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Merge la date si time cu time valid</p>
+</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>time: &quot;12:43&quot;</p>
+
+<p>noTimeDate: 2023-10-23</p>
+</td><td><p>date (success)</p>
 </td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
 <tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
 <tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
 <tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
 <tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
-<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">scir3221_F01:  AddTask [Version : 1]<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">scir3221_F01:  getDateMergedWithTime [Version : 1]<br /></td></tr>
 <tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
 </table>
 </div>
 <a name="toc_tc21382"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case P236-51: TC2_ECP_Invalid&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
 <tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">zsir3255</td></tr>
-<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Timestamp-ul de sfarsit are loc dupa cel de inceput</p>
-</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>&nbsp;&nbsp;&nbsp; Title: &quot;Important Presentation&quot;<br />
-&nbsp;&nbsp;&nbsp; Start Date &amp; Time: 2024-04-05 14:00<br />
-&nbsp;&nbsp;&nbsp; End Date &amp; Time: 2024-04-05 12:00<br />
-&nbsp;&nbsp;&nbsp; Repetition Interval: 2 hours 0 minutes<br />
-&nbsp;&nbsp;&nbsp; Active: True</p>
-</td><td><p>Error</p>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>time e negativ</p>
+</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>time: &quot;-13:12&quot;</p>
+
+<p>notTimeDate: 2023-10-24</p>
+</td><td><p>&nbsp;IllegalArgumentException(&quot;time unit exceeds bounds&quot;)</p>
 </td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
 <tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
 <tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
 <tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
 <tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
-<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">scir3221_F01:  AddTask [Version : 1]<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">scir3221_F01:  getDateMergedWithTime [Version : 1]<br /></td></tr>
 <tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
 </table>
 </div>
 <a name="toc_tc21385"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case P236-52: TC3_BVA_Valid&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
 <tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">zsir3255</td></tr>
-<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Adaugarea unui task cu parametrii valizi</p>
-</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>Title: &quot;Daily Standup&quot;<br />
-Start Date &amp; Time: 2024-04-05 09:00<br />
-End Date &amp; Time: 2024-04-05 10:00<br />
-Repetition Interval: 1 hours 0 minutes<br />
-Active: False</p>
-</td><td><p>Task Created</p>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>merge time si date valide</p>
+</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>time: &quot;00:00&quot;</p>
+
+<p>noTimeDate: 2024-03-20</p>
+</td><td><p>date (success)</p>
 </td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
 <tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
 <tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
 <tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
 <tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
-<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">scir3221_F01:  AddTask [Version : 1]<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">scir3221_F01:  getDateMergedWithTime [Version : 1]<br /></td></tr>
 <tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
 </table>
 </div>
 <a name="toc_tc21387"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case P236-53: TC4_BVA_Invalid&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
 <tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">zsir3255</td></tr>
-<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Adaugarea unui task cu data si ora de inceput invalide</p>
-</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>Title: &quot;Review Meeting&quot;<br />
-Start Date &amp; Time: 2024-04-69 25:89<br />
-End Date &amp; Time: 2024-04-05 14:00<br />
-Repetition Interval: 0 hours 45 minutes<br />
-Active: True</p>
-</td><td><p>Error: Start Date &amp; Time out of boudary</p>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>merge time si date cu time invalid</p>
+</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>time: &quot;24:12&quot;</p>
+
+<p>noTimeDate: 2024-03-20</p>
+</td><td><p>&nbsp;IllegalArgumentException(&quot;time unit exceeds bounds&quot;)</p>
 </td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
 <tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
 <tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
 <tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
 <tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
-<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">scir3221_F01:  AddTask [Version : 1]<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">scir3221_F01:  getDateMergedWithTime [Version : 1]<br /></td></tr>
 <tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
 </table>
 </div>
