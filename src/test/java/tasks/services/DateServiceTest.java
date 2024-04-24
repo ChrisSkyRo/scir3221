@@ -159,6 +159,7 @@ class DateServiceTest {
         //act
         try {
             result = service.getDateMergedWithTime(time, noTimeDate);
+            assert(false);
         }
         //assert
         catch (IllegalArgumentException e) {
