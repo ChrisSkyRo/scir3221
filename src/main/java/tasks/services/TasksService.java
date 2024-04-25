@@ -6,7 +6,9 @@ import tasks.model.ArrayTaskList;
 import tasks.model.Task;
 import tasks.model.TasksOperations;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class TasksService {
@@ -28,6 +30,10 @@ public class TasksService {
      */
     public ObservableList<Task> getObservableList(){
         return FXCollections.observableArrayList(tasks.getAll());
+    }
+
+    public List<Task> getAllTasks() {
+        return tasks.getAll();
     }
 
     /**
