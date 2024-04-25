@@ -11,26 +11,12 @@ public class TasksOperations {
         tasks=new ArrayList<>();
         tasks.addAll(tasksList);
     }
-    public Iterable<Task> incoming(Date start, Date end){
-        System.out.println(start);
-        System.out.println(end);
+    public Iterable<Task> incoming(Date start, Date end) {
         ArrayList<Task> incomingTasks = new ArrayList<>();
         for (Task t : tasks) {
             Date nextTime = t.nextTimeAfter(start);
-            if (nextTime == null) {
-                continue;
-            }
-            else {
-                if (nextTime.before(end)){
-                    incomingTasks.add(t);
-                    System.out.println(t.getTitle());
-                }
-                else {
-                    if (nextTime.equals(end)) {
-                        incomingTasks.add(t);
-                        System.out.println(t.getTitle());
-                    }
-                }
+            if (nextTime != null && (nextTime.before(end) || nextTime.equals(end))) {
+                incomingTasks.add(t);
             }
         }
         return incomingTasks;

@@ -1,68 +1,84 @@
 package tasks.services;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
+import org.mockito.Mockito;
 import tasks.model.ArrayTaskList;
 import tasks.model.Task;
+import tasks.model.TasksOperations;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 class Lab4TasksServiceIntegrationETest {
-    private ArrayTaskList repo;
-
-    private TasksService service;
-
-    private ArrayList<Task> tasks = new ArrayList<>();
-
-    private ObservableList observableList;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.initMocks(this);
-
-        tasks.add(new Task("t1", new Date(System.currentTimeMillis())));
-        tasks.add(new Task("t2", new Date(System.currentTimeMillis())));
-        tasks.add(new Task("t3", new Date(System.currentTimeMillis())));
-        tasks.add(new Task("t4", new Date(System.currentTimeMillis())));
-
-        repo = new ArrayTaskList();
-        repo.add(tasks.get(0));
-        repo.add(tasks.get(1));
-        repo.add(tasks.get(2));
-        repo.add(tasks.get(3));
-        service = new TasksService(repo);
-
-        observableList = FXCollections.observableList((ArrayList)tasks);
-    }
-
-    @AfterEach
-    void tearDown() {
-
-    }
-
-
     @Test
-    void integration_test_getAllTasks() {
+    void testGetObservableList() {
+        ArrayTaskList mockTaskList = Mockito.mock(ArrayTaskList.class);
 
-        ArrayList<Task> expected = tasks;
-        ArrayList<Task> result = (ArrayList<Task>) service.getAllTasks();
+        Task task1 = new Task("Task 1", new Date());
+        Task task2 = new Task("Task 2", new Date());
 
-        assertEquals(expected.size(), result.size());
+        Mockito.when(mockTaskList.getAll()).thenReturn(Arrays.asList(task1, task2));
+
+        TasksService tasksService = new TasksService(mockTaskList);
+
+        ObservableList<Task> observableList = tasksService.getObservableList();
+
+        assert(observableList.contains(task1));
+        assert(observableList.contains(task2));
     }
 
     @Test
-    void integration_test_getObservableList() {
+    void testGetIntervalInHours() {
+        Task task = new Task("Repeat Task", new Date(), new Date(), 3600); // 1 hour repeat interval
 
-        ObservableList<Task> expected = observableList;
-        ObservableList<Task> result = service.getObservableList();
+        TasksService tasksService = new TasksService(new ArrayTaskList());
 
-        assertEquals(expected.size(), result.size());
+        String interval = tasksService.getIntervalInHours(task);
+
+        assertEquals("01:00", interval);
     }
+
+    @Test
+    void testFilterTasks() {
+        Date startDate = new Date();
+        Date endDate = new Date(System.currentTimeMillis() + 86400000); // Tomorrow
+        Date filterStartDate = new Date(System.currentTimeMillis() - 1000);
+        Date filterEndDate = new Date(endDate.getTime() + 1000);
+
+        ArrayTaskList mockTaskList = Mockito.mock(ArrayTaskList.class);
+
+        Task task1 = new Task("Task 1", startDate);
+        Task task2 = new Task("Task 2", endDate);
+        Task task3 = new Task("Task 3", new Date(endDate.getTime() + 3600000));
+        task1.setActive(true);
+        task2.setActive(true);
+        task3.setActive(true);
+
+        Mockito.when(mockTaskList.getAll()).thenReturn(Arrays.asList(task1, task2, task3));
+
+        TasksOperations mockTasksOperations = Mockito.mock(TasksOperations.class);
+        Mockito.when(mockTasksOperations.incoming(startDate, endDate)).thenReturn(Arrays.asList(task1, task2));
+
+        TasksService tasksService = new TasksService(mockTaskList);
+
+        Iterable<Task> filteredTasks = tasksService.filterTasks(filterStartDate, filterEndDate);
+
+        assert (containsTask(filteredTasks, task1));
+        assert (containsTask(filteredTasks, task2));
+        assert (!containsTask(filteredTasks, task3));
+    }
+
+    private boolean containsTask(Iterable<Task> tasks, Task task) {
+        for (Task t : tasks) {
+            if (t.equals(task)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }

@@ -7,23 +7,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import tasks.model.ArrayTaskList;
 import tasks.model.Task;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 class Lab4TasksServiceIntegrationRTest {
-    @Mock
-    private Task task;
-
     @InjectMocks
     private ArrayTaskList repo;
 
