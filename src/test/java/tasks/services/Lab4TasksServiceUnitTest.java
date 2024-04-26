@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TasksServiceUnitTest {
+class Lab4TasksServiceUnitTest {
     @Mock
     private ArrayTaskList repo;
 
